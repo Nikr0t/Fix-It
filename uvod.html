@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixIt - Smart Tech Repairs Without the Stress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root.light {
+        --bg-primary: #FFFDFB;
+        --bg-secondary: #FDE4D2;
+        --bg-accent: #FFF4EB;
+        --color-btn: #2D3E50;
+        --color-btn-hover: #0B0F1C;
+        --color-card: #FDE4D2;
+        --color-text: #1C1C1E;
+        --color-muted: #6B6B6D;
+        --color-white: #FFFFFF;
+        --color-border:#E4DAD1;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        --radius: 16px;
+        --color-icon:       #00C08B;
+        --color-icon-devices:       #1C1C1E;
+        --color-primary:    #FF7849;     /* soft orange / coral */
+        --color-accent:     #2D3E50;     /* deep petrol */
+        }
+
+
+        :root {
+        --bg-primary: #0B0F1C;
+        --bg-secondary: #1E2639;
+        --bg-accent: #2C3E50;
+        --color-btn: #2C3E50;
+        --color-btn-hover: #0B0F1C;
+        --color-card: #2C3E50;
+        --color-text: #F4F4F4;
+        --color-muted: #AAB0BC;
+        --color-white: #FFFFFF;
+        --color-border:#474545;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        --color-icon:       #00C08B;
+        --color-icon-devices:       #00C08B;
+        --radius: 16px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+            line-height: 1.6;
+            background-color: var(--bg-primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+        }
+        
+        p {
+            color: var(--color-muted);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            background-color: var(--color-btn);
+            color: var(--color-white);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-btn-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-align: center;
+            color: var(--color-text);
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--color-muted);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        /* Header */
+        header {
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-primary);
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-links a {
+            color: var(--color-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .toggle-mode {
+            padding: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-dimmed);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 120px;
+            background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 140%;
+            height: 60px;
+            bottom: -30px;
+            left: -20%;
+            background-color: var(--bg-primary);
+            transform: rotate(-2deg);
+            filter: blur(20px);
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, var(--color-muted), var(--color-text));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--color-muted);
+            margin-bottom: 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        
+        .hero-image {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .upload-device {
+            margin-top: 24px;
+            padding: 16px;
+            background-color: var(--bg-accent);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-border);
+        }
+
+        .upload-device:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .upload-device h4 {
+            color: var(--color-text);
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+        
+        .upload-area {
+            border: 4px dashed var(--color-border);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            background-color: rgba(118, 118, 118, 0.05);
+        }
+        
+        /* Why FixIt */
+        .why-fixit {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background-color: var(--color-card);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 192, 139, 0.1);
+            border-radius: 50%;
+            color: var(--color-icon);
+            font-size: 32px;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        
+        /* Device Categories */
+        .device-categories {
+            background: linear-gradient(120deg, var(--bg-accent) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .devices {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+        
+        .device-card {
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 32px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-border);
+        }
+        
+        .device-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .device-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-icon-devices);
+            font-size: 32px;
+        }
+        
+        .device-title {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+        
+        .device-features {
+            text-align: left;
+            padding-left: 16px;
+            margin-bottom: 0;
+        }
+        
+        .device-features li {
+            font-size: 14px;
+            color: var(--color-muted);
+            margin-bottom: 8px;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .step-card {
+            position: relative;
+            background-color: var(--color-card);
+            border-radius: var(--radius);
+            padding: 48px 24px 32px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--color-border);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            background-color: var(--bg-primary);
+            color: var(--color-text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            border: 2px 0px solid var(--color-border);
+        }
+        
+        .step-image {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+
+        .step-card p {
+            color: var(--color-muted);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(120deg, var(--bg-accent) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .review-card {
+            background-color: var(--color-card);
+            border-radius: var(--radius);
+            padding: 32px;
+            position: relative;
+        }
+        
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 64px;
+            color: var(--color-muted);
+            opacity: 0.2;
+            line-height: 1;
+        }
+        
+        .review-text {
+            font-size: 16px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+            color: var(--color-text);
+        }
+        
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .reviewer-device {
+            font-size: 14px;
+            color: var(--color-muted);
+        }
+        
+        /* FAQ */
+        .faq {
+            background-color: var(--bg-primary);
+        }
+        
+        .questions {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .question-card {
+            background-color: var(--color-card);
+            border-radius: var(--radius);
+            padding: 24px 24px 12px 24px; /* reduced bottom padding */
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            box-shadow: var(--shadow);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .question-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .question-answer {
+            margin-top: 16px;
+            color: var(--color-muted);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+            opacity: 0;
+            display: block;
+        }
+        
+        .question-card.active .question-answer {
+            max-height: 300px;
+            opacity: 1;
+        }
+        
+        .question-header i {
+            transition: transform 0.3s;
+        }
+        
+        .question-card.active .question-header i {
+            transform: rotate(45deg);
+        }
+        
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            color: var(--color-text);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+        
+        .cta-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta .btn {
+            background-color: var(--color-btn);
+            color: var(--color-white);
+        }
+        
+        .cta .btn:hover {
+            background-color: var(--color-btn-hover);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1A202C;
+            color: var(--color-white);
+            padding: 80px 0 32px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-grid p {
+            color: var(--color-white);
+        }
+        
+        .footer-brand {
+            margin-bottom: 24px;
+        }
+        
+        .footer-brand-logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        
+        .footer-links h3 {
+            font-size: 20px;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        
+        .footer-link-list {
+            list-style: none;
+        }
+        
+        .footer-link-list li {
+            margin-bottom: 16px;
+        }
+        
+        .footer-link-list a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link-list a:hover {
+            color: var(--color-white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background-color: var(--color-btn);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-btn-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--color-white);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                order: -1;
+                margin-bottom: 32px;
+            }
+            
+            .features, .steps, .reviews {
+                grid-template-columns: 1fr;
+            }
+            
+            .devices {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .devices {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">FixIt</div>
+            <nav class="nav-links">
+                <a href="#why-fixit">Why FixIt</a>
+                <a href="#devices">Devices</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="header-buttons">
+                <button class="toggle-mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#contact" class="btn">Contact</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Don't Toss It. FixIt.</h1>
+                <p class="hero-subtitle">You send it. We fix it. Simple as that.</p>
+                <div class="hero-buttons">
+                    <a href="#start" class="btn">Start a Repair</a>
+                </div>
+                
+                <div class="upload-device">
+                    <h4>Take a photo of your device</h4>
+                    <div class="upload-area">
+                        <i class="fas fa-camera fa-2x" style="color: var(--color-muted); margin-bottom: 16px;"></i>
+                        <p>Drop your image here or click to browse</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Placeholder for 3D-style illustration -->
+                <img src="/api/placeholder/500/400" alt="3D illustration of devices being repaired" />
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why FixIt -->
+    <section class="why-fixit" id="why-fixit">
+        <div class="container">
+            <h2 class="section-title">Why FixIt?</h2>
+            <p class="section-subtitle">We make device repairs simple, reliable, and eco-friendly</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Fast & Easy Process</h3>
+                    <p>Submit your repair request online in minutes. We handle the logistics from there.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Verified Repair Partners</h3>
+                    <p>We only work with certified technicians who meet our strict quality standards.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="feature-title">Eco-Friendly Mission</h3>
+                    <p>Every repair prevents electronic waste and helps build a more sustainable future.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Device Categories -->
+    <section class="device-categories" id="devices">
+        <div class="container">
+            <h2 class="section-title">What We Repair</h2>
+            <p class="section-subtitle">Professional repairs for all your favorite devices</p>
+            
+            <div class="devices">
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="device-title">Phones</h3>
+                    <ul class="device-features">
+                        <li>Screen replacements</li>
+                        <li>Battery repairs</li>
+                        <li>Water damage</li>
+                    </ul>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="device-title">Laptops</h3>
+                    <ul class="device-features">
+                        <li>Screen replacements</li>
+                        <li>Battery upgrades</li>
+                        <li>Hardware repairs</li>
+                    </ul>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3 class="device-title">Headphones</h3>
+                    <ul class="device-features">
+                        <li>Audio fixes</li>
+                        <li>Battery replacements</li>
+                        <li>Charging ports</li>
+                    </ul>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="device-title">Consoles</h3>
+                    <ul class="device-features">
+                        <li>Controller repairs</li>
+                        <li>Disc drive issues</li>
+                        <li>Overheating fixes</li>
+                    </ul>
+                </div>
+                
+                <div class="device-card">
+                    <div class="device-icon">
+                        <i class="fas fa-object-group"></i>
+                    </div>
+                    <h3 class="device-title">Other</h3>
+                    <ul class="device-features">
+                        <li>Screen replacements</li>
+                        <li>Battery swaps</li>
+                        <li>Water damage fixes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Simple 3-step process to get your devices fixed</p>
+            
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-image">
+                        <!-- Placeholder for step illustration -->
+                        <img src="/api/placeholder/180/140" alt="Submit your repair request" />
+                    </div>
+                    <h3 class="step-title">Submit your repair request</h3>
+                    <p>Fill out our simple online form with details about your device and the issue you're experiencing.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-image">
+                        <!-- Placeholder for step illustration -->
+                        <img src="/api/placeholder/180/140" alt="Forward to trusted partner" />
+                    </div>
+                    <h3 class="step-title">We forward it to a trusted partner</h3>
+                    <p>Your device is matched with the right repair specialist from our network of certified technicians.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-image">
+                        <!-- Placeholder for step illustration -->
+                        <img src="/api/placeholder/180/140" alt="Get it back fixed" />
+                    </div>
+                    <h3 class="step-title">You get it back, fixed & working</h3>
+                    <p>Your repaired device is returned to you, often within days, ready to use and with a repair guarantee.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real reviews from real people</p>
+            
+            <div class="reviews">
+                <div class="review-card">
+                    <p class="review-text">Sent my phone Monday, got it back Friday. No stress! My screen looks brand new and the whole process was so easy.</p>
+                    <div class="reviewer">
+                        <div>
+                            <div class="reviewer-name">Elon Mask</div>
+                            <div class="reviewer-device">iPhone 13 Pro</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <p class="review-text">My laptop wouldn't turn on and I thought I'd lost all my data. FixIt not only repaired it but also recovered everything. Life-saving service!</p>
+                    <div class="reviewer">
+                        <div>
+                            <div class="reviewer-name">Steve Jobs</div>
+                            <div class="reviewer-device">MacBook Air</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <p class="review-text">Third time using FixIt for various devices. Always professional, always fair pricing, and always fixed right the first time.</p>
+                    <div class="reviewer">
+                        <div>
+                            <div class="reviewer-name">Mark Zuckerberg</div>
+                            <div class="reviewer-device">Multiple devices</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Ask Us Anything</h2>
+            <p class="section-subtitle">Common questions about our repair service</p>
+            
+            <div class="questions">
+                <div class="question-card">
+                    <div class="question-header">
+                        <h3 class="question-title">How long does it take?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="question-answer">
+                        <p>Most repairs are completed within 3-5 business days from when we receive your device. More complex repairs might take longer, but we'll always keep you updated on the progress.</p>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h3 class="question-title">What if my device can't be fixed?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="question-answer">
+                        <p>If our technicians determine that your device cannot be repaired, we'll return it to you and provide a detailed explanation. You'll only be charged a diagnostic fee in this case, which will be waived if you choose to proceed with the repair.</p>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h3 class="question-title">Do you offer a warranty?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="question-answer">
+                        <p>Yes, we offer a warranty on all repairs. The warranty duration and coverage depend on the type of repair and parts used. Please ask your repair specialist for details.</p>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h3 class="question-title">How do I track my repair?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="question-answer">
+                        <p>Once your repair is underway, we'll provide you with a tracking number and a link to monitor the status of your repair online.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2 class="cta-title">Ready to Fix It?</h2>
+            <p class="cta-subtitle">Get started with our simple repair process today</p>
+            <a href="#start" class="btn">Start a Repair</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand-logo">FixIt</div>
+                <p>Smart Tech Repairs Without the Stress</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul class="footer-link-list">
+                    <li><a href="#why-fixit">Why FixIt</a></li>
+                    <li><a href="#devices">Devices</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: support@fixit.com</p>
+                <p>Phone: 1-800-FIX-IT-NOW</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2025 FixIt. All rights reserved.</div>
+            <div>
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.question-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const card = header.closest('.question-card');
+                    // Close others
+                    document.querySelectorAll('.question-card').forEach(qc => {
+                        if (qc !== card) qc.classList.remove('active');
+                    });
+                    // Toggle this one
+                    card.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.querySelector('.toggle-mode');
+    toggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('light');
+        const icon = toggleBtn.querySelector('i');
+        icon.classList.toggle('fa-moon');
+        icon.classList.toggle('fa-sun');
+    });
+});
+</script>
+
+</body>
+</html>
