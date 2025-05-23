@@ -160,7 +160,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--text-dimmed);
+            color: var(--color-text);
         }
         
         /* Hero Section */
@@ -299,6 +299,7 @@
         }
         
         .feature-title {
+            color: var(--color-text);
             font-size: 20px;
             margin-bottom: 16px;
         }
@@ -655,6 +656,58 @@
             color: var(--color-white);
         }
         
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--bg-secondary);
+                padding: 20px;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                visibility: hidden;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links a {
+                font-size: 18px;
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+            }
+
+            .nav-links a:hover {
+                background: var(--bg-accent);
+                border-radius: var(--radius);
+            }
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .hero-container {
@@ -718,6 +771,9 @@
     <header>
         <div class="container header-container">
             <div class="logo">FixIt</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav class="nav-links">
                 <a href="#why-fixit">Why FixIt</a>
                 <a href="#devices">Devices</a>
@@ -1084,5 +1140,27 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+    // Mobile menu functionality
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+        const navLinks = document.querySelector('.nav-links');
+        const icon = this.querySelector('i');
+        
+        navLinks.classList.toggle('active');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        const navLinks = document.querySelector('.nav-links');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        
+        if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+        }
+    });
+</script>
 </body>
 </html>
