@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FixIt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root.light {
+        --bg-primary: #FFFDFB;
+        --bg-secondary: #FDE4D2;
+        --bg-accent: #FFF4EB;
+        --color-btn: #2D3E50;
+        --color-btn-hover: #0B0F1C;
+        --color-login-btn: #FFFFFF;
+        --color-login-btn-hover: #FF7849;
+        --color-card: #FFF4EB;
+        --color-text: #1C1C1E;
+        --color-muted: #6B6B6D;
+        --color-white: #FFFFFF;
+        --color-border:#E4DAD1;
+        --shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        --radius: 16px;
+        --color-icon:       #00C08B;
+        --color-icon-devices:       #1C1C1E;
+        --color-primary:    #FF7849;     /* soft orange / coral */
+        --color-accent:     #2D3E50;     /* deep petrol */
+        }
+
+        :root {
+        --bg-primary: #0B0F1C;
+        --bg-secondary: #1E2639;
+        --bg-accent: #2C3E50;
+        --color-btn: #2C3E50;
+        --color-btn-hover: #0B0F1C;
+        --color-login-btn: #2C3E50;
+        --color-login-btn-hover: #0B0F1C;
+        --color-card: #2C3E50;
+        --color-text: #F4F4F4;
+        --color-muted: #AAB0BC;
+        --color-white: #FFFFFF;
+        --color-border:#474545;
+        --color-primary:    #FF7849;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        --color-icon:       #00C08B;
+        --color-icon-devices:       #00C08B;
+        --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-accent); /* Changed from bg-accent */
+            color: var(--color-text); /* Ensure text color matches theme */
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-text); /* Ensure text color matches theme */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary); /* Highlight on hover */
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toggle-mode {
+            padding: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-text); /* Ensure toggle button matches theme */
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle.active::before {
+            transform: translateX(24px);
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .profile-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: var(--color-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            min-width: 150px;
+            display: none;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            border-radius: var(--radius);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .welcome-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-card {
+            background: var(--color-card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .icon-progress {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+        }
+
+        .icon-completed {
+            background: linear-gradient(135deg, #00C08B, #00A86B);
+        }
+
+        .icon-messages {
+            background: linear-gradient(135deg, #667EEA, #764BA2);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .repair-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .repair-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .repair-status {
+            font-size: 0.9rem;
+            color: var(--color-muted);
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 8px;
+            background: var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .message-item {
+            padding: 1rem;
+            background: var(--bg-accent);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .message-meta {
+            display: flex;
+            justify-content: between;
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            background: var(--color-card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--color-text);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--color-primary);
+        }
+
+        .timeline-item.completed::before {
+            background: var(--color-icon);
+        }
+
+        .timeline-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--color-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .action-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-btn), var(--color-btn-hover));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--color-btn), var(--color-btn-hover));
+            color: white;
+            border: 2px solid var(--color-border);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1A202C;
+            color: var(--color-white);
+            padding: 80px 0 32px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            padding-left: 7%;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-grid p {
+            color: var(--color-white);
+        }
+        
+        .footer-brand {
+            margin-bottom: 24px;
+        }
+        
+        .footer-brand-logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        
+        .footer-links h3 {
+            font-size: 20px;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        
+        .footer-link-list {
+            list-style: none;
+        }
+        
+        .footer-link-list li {
+            margin-bottom: 16px;
+        }
+        
+        .footer-link-list a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link-list a:hover {
+            color: var(--color-white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background-color: var(--color-btn);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-btn-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--color-white);
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .welcome-content h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">FixIt</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">My Repairs</a></li>
+                <li><a href="#">About us</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="toggle-mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="profile-dropdown">
+                    <button class="profile-btn" onclick="toggleDropdown()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="#"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-content">
+                <h1>Welcome back, Sarah!</h1>
+                <p>Here's the latest on your repairs.</p>
+            </div>
+        </section>
+
+        <!-- Dashboard Cards -->
+        <section class="dashboard-grid">
+            <!-- Repairs in Progress -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon icon-progress">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="card-title">Repair in Progress</h3>
+                </div>
+                <div class="repair-item">
+                    <div class="repair-info">
+                        <h4>iPhone 14 Pro</h4>
+                        <p class="repair-status">Screen replacement • ETA: 2 days</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="repair-item">
+                    <div class="repair-info">
+                        <h4>MacBook Air M2</h4>
+                        <p class="repair-status">Battery replacement • ETA: 1 day</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Repairs -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon icon-completed">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="card-title">Completed Repairs</h3>
+                </div>
+                <div class="stats-number">12</div>
+                <p class="repair-status">Total successful repairs</p>
+                <div style="margin-top: 1rem;">
+                    <p style="margin-bottom: 0.5rem;"><strong>Recent:</strong></p>
+                    <p class="repair-status">• iPad Pro - Screen repair (Dec 15)</p>
+                    <p class="repair-status">• Samsung Galaxy - Battery (Dec 8)</p>
+                    <p class="repair-status">• AirPods Pro - Left speaker (Nov 28)</p>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon icon-messages">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <h3 class="card-title">Messages</h3>
+                </div>
+                <div class="message-item">
+                    <div class="message-meta">
+                        <span><strong>Tech Support</strong></span>
+                        <span>2 hours ago</span>
+                    </div>
+                    <p>Your iPhone screen repair is almost complete. We'll notify you when it's ready for pickup!</p>
+                </div>
+                <div class="message-item">
+                    <div class="message-meta">
+                        <span><strong>Repair Update</strong></span>
+                        <span>Yesterday</span>
+                    </div>
+                    <p>MacBook battery replacement has started. Estimated completion: tomorrow afternoon.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repair Timeline -->
+        <section class="timeline-section">
+            <h2 class="timeline-title">Repair Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item completed">
+                    <div class="timeline-content">
+                        <h4>Package Received</h4>
+                        <p>Your iPhone 14 Pro has been received at our facility - Dec 18, 10:30 AM</p>
+                    </div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-content">
+                        <h4>Diagnostics Complete</h4>
+                        <p>Screen damage confirmed, repair quote approved - Dec 18, 2:15 PM</p>
+                    </div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-content">
+                        <h4>Repair Started</h4>
+                        <p>Technician has started the screen replacement - Dec 19, 9:00 AM</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Quality Check</h4>
+                        <p>Final testing and quality assurance - Expected: Dec 20, 2:00 PM</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Ready for Pickup</h4>
+                        <p>Device ready for collection or shipping - Expected: Dec 20, 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <a href="#" class="action-btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Start New Repair
+            </a>
+            <a href="#" class="action-btn btn-secondary">
+                <i class="fas fa-download"></i>
+                Download Invoice
+            </a>
+            <a href="#" class="action-btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                Message Support
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand-logo">FixIt</div>
+                <p>Smart Tech Repairs Without the Stress</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul class="footer-link-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">My Repairs</a></li>
+                    <li><a href="#">About us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: support@fixit.com</p>
+                <p>Phone: 1-800-FIX-IT-NOW</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2025 FixIt. All rights reserved.</div>
+            <div>
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Profile dropdown functionality
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('dropdownMenu');
+            const profileBtn = document.querySelector('.profile-btn');
+            
+            if (!profileBtn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading states to buttons
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                }
+            });
+        });
+
+        // Theme toggle functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.querySelector('.toggle-mode');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+
+    // Apply the saved theme or default to light mode
+    document.documentElement.classList.toggle('light', savedTheme === 'light');
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+
+    // Update the toggle button icon
+    const icon = toggleBtn.querySelector('i');
+    if (savedTheme === 'dark') {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+
+    // Add event listener for theme toggle
+    toggleBtn.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.contains('light');
+        document.documentElement.classList.toggle('light', !isLight);
+        document.documentElement.classList.toggle('dark', isLight);
+
+        // Update the icon
+        icon.classList.toggle('fa-moon');
+        icon.classList.toggle('fa-sun');
+
+        // Save the theme preference
+        localStorage.setItem('theme', isLight ? 'dark' : 'light');
+    });
+});
+    </script>
+</body>
+</html>
