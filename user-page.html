@@ -538,42 +538,35 @@
 
         @media (max-width: 992px) {
             .footer-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .social-links {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .social-link {
+                width: 100%;
+                height: 40px;
+                border-radius: 8px;
             }
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 1rem;
-            }
+        /* Mobile Navigation */
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--color-text);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px;
+    }
 
-            .nav-links {
-                display: none;
-            }
-
-            .main-content {
-                padding: 1rem;
-            }
-
-            .welcome-content h1 {
-                font-size: 2rem;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .quick-actions {
-                flex-direction: column;
-            }
-
-            .action-btn {
-                text-align: center;
-                justify-content: center;
-            }
-        }
-        @media (max-width: 768px) {
+    @media (max-width: 768px) {
         .mobile-menu-btn {
             display: block;
         }
@@ -620,6 +613,9 @@
     <header class="header">
         <nav class="nav-container">
             <a href="#" class="logo">FixIt</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Pricing</a></li>
@@ -834,13 +830,11 @@
     </footer>
 
     <script>
-        // Profile dropdown functionality
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.classList.toggle('active');
         }
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('dropdownMenu');
             const profileBtn = document.querySelector('.profile-btn');
@@ -850,7 +844,6 @@
             }
         });
 
-        // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -878,17 +871,13 @@
                 }
             });
         });
-
-        // Theme toggle functionality
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.querySelector('.toggle-mode');
     const savedTheme = localStorage.getItem('theme') || 'light';
 
-    // Apply the saved theme or default to light mode
     document.documentElement.classList.toggle('light', savedTheme === 'light');
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
 
-    // Update the toggle button icon
     const icon = toggleBtn.querySelector('i');
     if (savedTheme === 'dark') {
         icon.classList.remove('fa-moon');
@@ -898,20 +887,36 @@ document.addEventListener('DOMContentLoaded', function () {
         icon.classList.add('fa-moon');
     }
 
-    // Add event listener for theme toggle
     toggleBtn.addEventListener('click', () => {
         const isLight = document.documentElement.classList.contains('light');
         document.documentElement.classList.toggle('light', !isLight);
         document.documentElement.classList.toggle('dark', isLight);
 
-        // Update the icon
         icon.classList.toggle('fa-moon');
         icon.classList.toggle('fa-sun');
 
-        // Save the theme preference
         localStorage.setItem('theme', isLight ? 'dark' : 'light');
     });
 });
+
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+        const navLinks = document.querySelector('.nav-links');
+        const icon = this.querySelector('i');
+        
+        navLinks.classList.toggle('active');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    document.addEventListener('click', function(e) {
+        const navLinks = document.querySelector('.nav-links');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        
+        if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+        }
+    });
     </script>
 </body>
 </html>
