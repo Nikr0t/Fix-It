@@ -272,7 +272,7 @@
             background: var(--color-card);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            padding: 2rem 1.5rem 1rem 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
@@ -846,9 +846,7 @@
                             <button class="repair-btn message-support-btn" style="background:var(--color-progress);color:#fff;">Message Support</button>
                         </div>
                         <div class="timeline-accordion">
-                            <button class="timeline-toggle">
-                                <i class="fas fa-chevron-right"></i> Repair Timeline
-                            </button>
+
                             <div class="timeline-content">
                                 <ul class="timeline-list">
                                     <li><span class="timeline-dot completed"></span> Device received (Jan 10, 09:00)</li>
@@ -876,9 +874,6 @@
                             <button class="repair-btn message-support-btn" style="background:var(--color-progress);color:#fff;">Message Support</button>
                         </div>
                         <div class="timeline-accordion">
-                            <button class="timeline-toggle">
-                                <i class="fas fa-chevron-right"></i> Repair Timeline
-                            </button>
                             <div class="timeline-content">
                                 <ul class="timeline-list">
                                     <li><span class="timeline-dot completed"></span> Device received (Jan 8, 14:00)</li>
@@ -906,9 +901,6 @@
                             <button class="repair-btn message-support-btn" style="background:var(--color-progress);color:#fff;">Message Support</button>
                         </div>
                         <div class="timeline-accordion">
-                            <button class="timeline-toggle">
-                                <i class="fas fa-chevron-right"></i> Repair Timeline
-                            </button>
                             <div class="timeline-content">
                                 <ul class="timeline-list">
                                     <li><span class="timeline-dot completed"></span> Device received (Jan 7, 10:00)</li>
@@ -934,7 +926,7 @@
                             <div class="history-type">Battery replacement</div>
                             <div class="history-date">Completed: Dec 15, 2024</div>
                         </div>
-                        <div class="history-price">1 200 Kč</div>
+                        <div class="history-price">1 200 Kč</div>
                         <div class="history-actions">
                             <button class="history-btn leave-review-btn">Leave a Review</button>
                         </div>
@@ -946,7 +938,7 @@
                             <div class="history-type">Keyboard repair</div>
                             <div class="history-date">Completed: Nov 28, 2024</div>
                         </div>
-                        <div class="history-price">2 000 Kč</div>
+                        <div class="history-price">2 000 Kč</div>
                         <div class="history-actions">
                             <button class="history-btn leave-review-btn">Leave a Review</button>
                         </div>
@@ -1120,6 +1112,17 @@
                 toggle.addEventListener('click', function() {
                     const accordion = this.closest('.timeline-accordion');
                     accordion.classList.toggle('open');
+                });
+            });
+
+            // View Details logic
+            document.querySelectorAll('.repair-card .repair-btn:first-child').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = btn.closest('.repair-card');
+                    const accordion = card.querySelector('.timeline-accordion');
+                    if (accordion) {
+                        accordion.classList.toggle('open');
+                    }
                 });
             });
 
